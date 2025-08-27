@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>Rafael & Juana - Invitación de Boda</title>
     <link rel="preload" as="image" href="https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg">
-    <link rel="stylesheet" href="CCSB.css?v=3">
+    <link rel="stylesheet" href="CCSB.v4.css?v=4">
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <style>
         /* Carrusel: 3 imágenes simultáneamente con foto central destacada */
@@ -429,6 +429,18 @@
         </div>
 
         <script src="https://www.youtube.com/iframe_api"></script>
-        <script src="JAVAB.js?v=3" defer></script>
+        <script>
+        (function() {
+            try {
+                if ('caches' in window) {
+                    caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(() => {});
+                }
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister())).catch(() => {});
+                }
+            } catch(e) {}
+        })();
+        </script>
+        <script src="JAVAB.v4.js?v=4" defer></script>
 </body>
 </html>
