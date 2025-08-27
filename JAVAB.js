@@ -252,8 +252,7 @@ function initializeCarousel() {
 
     // Auto-play del carrusel
     setInterval(() => {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
+        nextSlide();
     }, 4000);
 }
 
@@ -270,12 +269,13 @@ function updateCarousel() {
 
         const firstRect = items[0].getBoundingClientRect();
         const secondRect = items[1] ? items[1].getBoundingClientRect() : null;
-        const stepWidth = secondRect ? Math.round(secondRect.left - firstRect.left) : Math.round(firstRect.width);
+        const stepWidth = Math.max(1, secondRect ? Math.round(secondRect.left - firstRect.left) : Math.round(firstRect.width));
 
         const containerWidth = Math.round(container.getBoundingClientRect().width);
         const visibleCount = Math.max(1, Math.floor((containerWidth + 1) / stepWidth));
         const maxIndex = Math.max(0, totalSlides - visibleCount);
-        if (currentSlide > maxIndex) currentSlide = maxIndex;
+        if (currentSlide > maxIndex) currentSlide = 0;
+        if (currentSlide < 0) currentSlide = maxIndex;
 
         const trackRect = track.getBoundingClientRect();
         const baseLeft = Math.round(firstRect.left - trackRect.left);
@@ -290,20 +290,12 @@ function updateCarousel() {
 }
 
 function nextSlide() {
-    if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-    } else {
-        currentSlide = 0;
-    }
+    currentSlide++;
     updateCarousel();
 }
 
 function previousSlide() {
-    if (currentSlide > 0) {
-        currentSlide--;
-    } else {
-        currentSlide = totalSlides - 1;
-    }
+    currentSlide--;
     updateCarousel();
 }
 
