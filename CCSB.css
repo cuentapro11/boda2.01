@@ -1282,3 +1282,13 @@ button[class*="carousel"] {
 }
 
 
+/* Alternar fondos grises por sección (rayado sutil) */
+.content > section:nth-of-type(odd) {
+    background-color: #111 !important;
+}
+
+.content > section:nth-of-type(even) {
+    background-color: #1a1a1a !important;
+}
+
+
