@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script>
+    // Unconditional one-time HTML bust to force fresh index fetch
+    (function(){
+      try {
+        if (!/[?&]__html_bust=/.test(location.search)) {
+          var u = new URL(location.href);
+          u.searchParams.set('__html_bust', Date.now().toString());
+          location.replace(u.toString());
+        }
+      } catch(e) {}
+    })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
