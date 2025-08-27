@@ -479,7 +479,6 @@
             <div id="toastContent"></div>
         </div>
 
-        <script src="https://www.youtube.com/iframe_api"></script>
         <script>
         (function() {
             try {
@@ -492,26 +491,7 @@
             } catch(e) {}
         })();
         </script>
-        <script>
-        // Inline parallax to bypass cached JS files
-        (function() {
-          var ticking = false;
-          function getHero(){ return document.querySelector('.hero-section'); }
-          function applyParallax(){
-            var hero = getHero();
-            if(!hero) return;
-            if (window.innerWidth <= 1024) {
-              var offset = window.scrollY * 0.5;
-              hero.style.backgroundPosition = 'center ' + offset + 'px';
-            } else {
-              hero.style.backgroundPosition = 'center 0';
-            }
-          }
-          function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(function(){ applyParallax(); ticking=false; }); } }
-          function init(){ applyParallax(); document.addEventListener('scroll', onScroll, {passive:true}); window.addEventListener('resize', applyParallax); window.addEventListener('orientationchange', applyParallax); }
-          if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', init); } else { init(); }
-        })();
-        </script>
+        <script src="https://www.youtube.com/iframe_api"></script>
         <script src="JAVAB.js" defer></script>
 </body>
 </html>
