@@ -6,6 +6,27 @@
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    <script>
+    (function() {
+        try {
+            var ts = Date.now().toString();
+            var links = Array.prototype.slice.call(document.querySelectorAll('link[rel="stylesheet"][href]'));
+            links.forEach(function(link){
+                var href = link.getAttribute('href');
+                if (!href) return;
+                href = href.replace(/([?&])v=[^&]*/,'').split('#')[0];
+                link.setAttribute('href', href + (href.indexOf('?')>-1?'&':'?') + 't=' + ts);
+            });
+            var scripts = Array.prototype.slice.call(document.querySelectorAll('script[src]'));
+            scripts.forEach(function(scr){
+                var src = scr.getAttribute('src');
+                if (!src) return;
+                src = src.replace(/([?&])v=[^&]*/,'').split('#')[0];
+                scr.setAttribute('src', src + (src.indexOf('?')>-1?'&':'?') + 't=' + ts);
+            });
+        } catch(e) {}
+    })();
+    </script>
     <title>Rafael & Juana - Invitación de Boda</title>
     <link rel="preload" as="image" href="https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg">
     <link rel="stylesheet" href="CCSB.v4.css?v=4">
