@@ -404,11 +404,66 @@ function showToast(title, message) {
     }, 4000);
 }
 
-// Parallax en móviles
-document.addEventListener("scroll", () => {
-  const hero = document.querySelector(".hero-section");
-  if (hero) {
-    let offset = window.scrollY * 0.5; // velocidad parallax
-    hero.style.backgroundPositionY = `${offset}px`;
+// Parallax en móviles (iOS y Android no soportan background-attachment: fixed)
+(function() {
+  let ticking = false;
+
+  function getHero() {
+    return document.querySelector(".hero-section");
   }
-});
+
+  function applyParallax() {
+    const hero = getHero();
+    if (!hero) return;
+    // Solo aplicar en pantallas <= 1024px
+    if (window.innerWidth <= 1024) {
+      const offset = window.scrollY * 0.5; // velocidad del efecto
+      hero.style.backgroundPosition = `center ${offset}px`;
+    } else {
+      // Reset en desktop (usa fixed normal)
+      hero.style.backgroundPosition = "center 0";
+    }
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(() => {
+        applyParallax();
+        ticking = false;
+      });
+    }
+  }
+
+  function init() {
+    applyParallax();
+    document.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", applyParallax);
+    window.addEventListener("orientationchange", applyParallax);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+// Forzar limpieza de caches en clientes antiguos
+(function() {
+  function clearCaches() {
+    if ('caches' in window) {
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(() => {});
+    }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(reg => reg.unregister());
+      }).catch(() => {});
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', clearCaches);
+  } else {
+    clearCaches();
+  }
+})();

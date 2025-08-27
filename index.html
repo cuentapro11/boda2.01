@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script>
+    // Unconditional one-time HTML bust to force fresh index fetch
+    (function(){
+      try {
+        if (!/[?&]__html_bust=/.test(location.search)) {
+          var u = new URL(location.href);
+          u.searchParams.set('__html_bust', Date.now().toString());
+          location.replace(u.toString());
+        }
+      } catch(e) {}
+    })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+    // Unregister SW and hard-reload with a unique param to bypass stale caches
+    (function(){
+      try {
+        var hasBypass = /[?&]__bypass=/.test(location.search);
+        if (!hasBypass && 'serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function(regs){
+            if (regs && regs.length) {
+              regs.forEach(function(r){ r.unregister(); });
+              var u = new URL(location.href);
+              u.searchParams.set('__bypass', Date.now().toString());
+              location.replace(u.toString());
+            }
+          }).catch(function(){});
+        }
+      } catch(e) {}
+    })();
+    </script>
+    <script>
+    (function() {
+        try {
+            var ts = Date.now().toString();
+            var links = Array.prototype.slice.call(document.querySelectorAll('link[rel="stylesheet"][href]'));
+            links.forEach(function(link){
+                var href = link.getAttribute('href');
+                if (!href) return;
+                href = href.replace(/([?&])v=[^&]*/,'').split('#')[0];
+                link.setAttribute('href', href + (href.indexOf('?')>-1?'&':'?') + 't=' + ts);
+            });
+            var scripts = Array.prototype.slice.call(document.querySelectorAll('script[src]'));
+            scripts.forEach(function(scr){
+                var src = scr.getAttribute('src');
+                if (!src) return;
+                src = src.replace(/([?&])v=[^&]*/,'').split('#')[0];
+                scr.setAttribute('src', src + (src.indexOf('?')>-1?'&':'?') + 't=' + ts);
+            });
+        } catch(e) {}
+    })();
+    </script>
     <title>Rafael & Juana - Invitación de Boda</title>
-    <link rel="stylesheet" href="CCSB.css?v=1692988800">
-    <link href="" rel="stylesheet">
+    <link rel="preload" as="image" href="https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg">
+    <link rel="stylesheet" href="CCSB.v7.css?v=7">
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <style>
         /* Carrusel: 3 imágenes simultáneamente con foto central destacada */
@@ -119,6 +173,21 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
+    </style>
+    <style id="critical-hero-overrides">
+        /* Overrides inline to bypass stubborn caches */
+        .hero-section {
+            background: url('https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg') center / cover no-repeat !important;
+            background-attachment: fixed !important;
+            background-position: center 0 !important;
+            will-change: background-position !important;
+        }
+        @media (max-width: 1024px) {
+            .hero-section {
+                background-color: #111 !important;
+                min-height: 100dvh !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -426,6 +495,47 @@
         </div>
 
         <script src="https://www.youtube.com/iframe_api"></script>
-        <script src="JAVAB.js"></script>
+        <script>
+        (function() {
+            try {
+                if ('caches' in window) {
+                    caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(() => {});
+                }
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister())).catch(() => {});
+                }
+            } catch(e) {}
+        })();
+        </script>
+        <script>
+        // Inline parallax to bypass cached JS files
+        (function() {
+          var ticking = false;
+          function getHero(){ return document.querySelector('.hero-section'); }
+          function applyParallax(){
+            var hero = getHero();
+            if(!hero) return;
+            if (window.innerWidth <= 1024) {
+              var offset = window.scrollY * 0.5;
+              hero.style.backgroundPosition = 'center ' + offset + 'px';
+            } else {
+              hero.style.backgroundPosition = 'center 0';
+            }
+          }
+          function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(function(){ applyParallax(); ticking=false; }); } }
+          function init(){ applyParallax(); document.addEventListener('scroll', onScroll, {passive:true}); window.addEventListener('resize', applyParallax); window.addEventListener('orientationchange', applyParallax); }
+          if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', init); } else { init(); }
+        })();
+        </script>
+        <div style="position:fixed;bottom:8px;right:8px;background:#000;color:#fff;padding:6px 10px;border-radius:6px;font:12px/1.2 monospace;z-index:99999;opacity:0.8">build v7</div>
+        <script>
+        // Dynamically inject v7 JS with unique timestamp to force fresh fetch
+        (function(){
+          var s = document.createElement('script');
+          s.src = 'JAVAB.v7.js?t=' + Date.now();
+          s.defer = true;
+          document.head.appendChild(s);
+        })();
+        </script>
 </body>
 </html>
