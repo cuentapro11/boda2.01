@@ -78,27 +78,30 @@ html { background-color: #8B5E3C; }
 }
 
 .modal-content {
-    background: white;
-    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(17,17,17,0.96), rgba(34,34,34,0.96));
+    border-radius: 16px;
     padding: 2rem;
-    max-width: 400px;
-    width: 90%;
+    max-width: 420px;
+    width: 92%;
     text-align: center;
-    box-shadow: var(--shadow-elegant);
-    border: 2px solid hsl(var(--gold) / 0.2);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset;
+    border: 1px solid hsl(var(--gold) / 0.35);
+    color: #fff;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .modal-title {
-    font-size: 1.5rem;
-    color: hsl(var(--brown));
+    font-size: 1.6rem;
+    color: #fff;
     margin-bottom: 1rem;
     font-family: 'Playfair Display', serif;
 }
 
 .modal-names {
-    font-size: 2rem;
+    font-size: 2.1rem;
     font-family: 'Playfair Display', serif;
-    color: hsl(var(--brown));
+    color: #fff;
     margin-bottom: 1rem;
 }
 
