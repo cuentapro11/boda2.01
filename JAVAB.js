@@ -448,3 +448,22 @@ function showToast(title, message) {
     init();
   }
 })();
+
+// Forzar limpieza de caches en clientes antiguos
+(function() {
+  function clearCaches() {
+    if ('caches' in window) {
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(() => {});
+    }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(reg => reg.unregister());
+      }).catch(() => {});
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', clearCaches);
+  } else {
+    clearCaches();
+  }
+})();
