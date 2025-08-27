@@ -1297,4 +1297,10 @@ button[class*="carousel"] {
     background-color: #1a1a1a !important;
 }
 
+/* Portada (desktop): imagen nueva para PC */
+@media (min-width: 1025px) {
+	.hero-section {
+		background-image: url('https://i.ibb.co/mFvyp3fn/Dise-o-sin-t-tulo.png');
+	}
+}
 
