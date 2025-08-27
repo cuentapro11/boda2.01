@@ -7,7 +7,7 @@ let enableMusic = false;
 
 // Funciones globales para los botones del modal
 function enterWithMusicClick() {
-    console.log('Función enterWithMusicClick() ejecutada');
+    // console.log('Función enterWithMusicClick() ejecutada');
     enableMusic = true;
     const modal = document.getElementById('welcomeModal');
     if (modal) {
@@ -21,7 +21,7 @@ function enterWithMusicClick() {
 }
 
 function enterWithoutMusicClick() {
-    console.log('Función enterWithoutMusicClick() ejecutada');
+    // console.log('Función enterWithoutMusicClick() ejecutada');
     enableMusic = false;
     const modal = document.getElementById('welcomeModal');
     if (modal) {
@@ -35,11 +35,11 @@ function setupModalButtons() {
     const enterWithoutMusic = document.getElementById('enterWithoutMusic');
     const modal = document.getElementById('welcomeModal');
 
-    console.log('Configurando botones del modal...', { enterWithMusic, enterWithoutMusic, modal });
+    // console.log('Configurando botones del modal...', { enterWithMusic, enterWithoutMusic, modal });
 
     if (enterWithMusic) {
         enterWithMusic.onclick = function() {
-            console.log('Botón CON música clickeado');
+            // console.log('Botón CON música clickeado');
             enableMusic = true;
             if (modal) {
                 modal.style.display = 'none';
@@ -54,7 +54,7 @@ function setupModalButtons() {
 
     if (enterWithoutMusic) {
         enterWithoutMusic.onclick = function() {
-            console.log('Botón SIN música clickeado');
+            // console.log('Botón SIN música clickeado');
             enableMusic = false;
             if (modal) {
                 modal.style.display = 'none';
@@ -65,7 +65,7 @@ function setupModalButtons() {
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM cargado, inicializando...');
+    // console.log('DOM cargado, inicializando...');
     initializeCountdown();
     initializeCarousel();
     setupModalButtons();
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // También configurar cuando la página esté completamente cargada
 window.addEventListener('load', function() {
-    console.log('Ventana completamente cargada');
+    // console.log('Ventana completamente cargada');
     setupModalButtons();
 });
 
@@ -285,7 +285,7 @@ function updateCarousel() {
 
         // Apply transform
         track.style.transform = `translateX(${translateXpx}px)`;
-        console.log('Carousel moved to slide:', { currentSlide, visibleCount, maxIndex, translateXpx, stepWidth, baseLeft });
+        // console.log('Carousel moved to slide:', { currentSlide, visibleCount, maxIndex, translateXpx, stepWidth, baseLeft });
     }
     updateSlideCounter();
     markCenterCarouselItem();

@@ -59,7 +59,7 @@
     </script>
     <title>Rafael & Juana - Invitación de Boda</title>
     <link rel="preload" as="image" href="https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg">
-    <link rel="stylesheet" href="CCSB.v7.css?v=7">
+    <link rel="stylesheet" href="CCSB.css">
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <style>
         /* Carrusel: 3 imágenes simultáneamente con foto central destacada */
@@ -173,21 +173,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-    </style>
-    <style id="critical-hero-overrides">
-        /* Overrides inline to bypass stubborn caches */
-        .hero-section {
-            background: url('https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg') center / cover no-repeat !important;
-            background-attachment: fixed !important;
-            background-position: center 0 !important;
-            will-change: background-position !important;
-        }
-        @media (max-width: 1024px) {
-            .hero-section {
-                background-color: #111 !important;
-                min-height: 100dvh !important;
-            }
-        }
     </style>
 </head>
 <body>
@@ -527,15 +512,6 @@
           if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', init); } else { init(); }
         })();
         </script>
-        <div style="position:fixed;bottom:8px;right:8px;background:#000;color:#fff;padding:6px 10px;border-radius:6px;font:12px/1.2 monospace;z-index:99999;opacity:0.8">build v7</div>
-        <script>
-        // Dynamically inject v7 JS with unique timestamp to force fresh fetch
-        (function(){
-          var s = document.createElement('script');
-          s.src = 'JAVAB.v7.js?t=' + Date.now();
-          s.defer = true;
-          document.head.appendChild(s);
-        })();
-        </script>
+        <script src="JAVAB.js" defer></script>
 </body>
 </html>
