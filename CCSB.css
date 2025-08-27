@@ -182,6 +182,8 @@ html { background-color: #8B5E3C; }
     background: hsl(var(--primary)) url('https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg') center center no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    background-position: center;
+    will-change: transform; /* optimización */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -190,7 +192,6 @@ html { background-color: #8B5E3C; }
 
 @media (max-width: 1024px) {
     .hero-section {
-        background-attachment: scroll; /* evita bug de pantalla negra en móviles */
         background-color: #111; /* fallback paint */
         min-height: 100dvh; /* llenar pantalla en móvil */
     }

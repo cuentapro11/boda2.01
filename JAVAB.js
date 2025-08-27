@@ -403,3 +403,12 @@ function showToast(title, message) {
         toast.classList.remove('show');
     }, 4000);
 }
+
+// Parallax en móviles
+document.addEventListener("scroll", () => {
+  const hero = document.querySelector(".hero-section");
+  if (hero) {
+    let offset = window.scrollY * 0.5; // velocidad parallax
+    hero.style.backgroundPositionY = `${offset}px`;
+  }
+});
