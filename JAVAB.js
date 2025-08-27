@@ -70,13 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCarousel();
     setupModalButtons();
 
-    // Fallback: ocultar el modal si por alguna razón queda bloqueando la vista (p. ej., en GitHub Pages)
+    // Mostrar el modal de bienvenida para elegir con/sin música
     const modal = document.getElementById('welcomeModal');
-    setTimeout(() => {
-        if (modal && getComputedStyle(modal).display !== 'none') {
-            modal.style.display = 'none';
-        }
-    }, 1500);
+    if (modal) {
+        modal.style.display = 'flex';
+    }
 });
 
 // También configurar cuando la página esté completamente cargada
