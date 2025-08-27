@@ -391,8 +391,8 @@ function showToast(title, message) {
     const toastContent = document.getElementById('toastContent');
     
     toastContent.innerHTML = `
-        <h4 style="font-weight: 600; color: hsl(var(--brown)); margin-bottom: 0.5rem;">${title}</h4>
-        <p style="color: hsl(var(--foreground) / 0.7);">${message}</p>
+        <h4 style="font-weight: 700; color: #fff; margin-bottom: 0.35rem; letter-spacing: 0.2px;">${title}</h4>
+        <p style="color: #ddd;">${message}</p>
     `;
     
     toast.classList.add('show');
