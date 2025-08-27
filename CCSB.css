@@ -179,11 +179,10 @@ html { background-color: #8B5E3C; }
     max-width: 1100px; /* igual que .main-center */
     margin: 0 auto;    /* centrar como el resto */
     min-height: 100vh;
-    background: hsl(var(--primary)) url('https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg') center center no-repeat;
-    background-size: cover;
+    background: url('https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg') center / cover no-repeat;
     background-attachment: fixed;
-    background-position: center;
-    will-change: transform; /* optimización */
+    background-position: center 0;
+    will-change: background-position;
     display: flex;
     align-items: center;
     justify-content: center;

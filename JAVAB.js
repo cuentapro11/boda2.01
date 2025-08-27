@@ -404,11 +404,22 @@ function showToast(title, message) {
     }, 4000);
 }
 
-// Parallax en móviles
-document.addEventListener("scroll", () => {
+// Parallax en móviles (iOS y Android no soportan background-attachment: fixed)
+(function() {
   const hero = document.querySelector(".hero-section");
-  if (hero) {
-    let offset = window.scrollY * 0.5; // velocidad parallax
-    hero.style.backgroundPositionY = `${offset}px`;
+  if (!hero) return;
+
+  function applyParallax() {
+    // Solo aplicar en pantallas <= 1024px
+    if (window.innerWidth <= 1024) {
+      let offset = window.scrollY * 0.5; // velocidad del efecto
+      hero.style.backgroundPosition = `center ${offset}px`;
+    } else {
+      // Reset en desktop (usa fixed normal)
+      hero.style.backgroundPosition = "center 0";
+    }
   }
-});
+
+  document.addEventListener("scroll", applyParallax);
+  window.addEventListener("resize", applyParallax);
+})();
