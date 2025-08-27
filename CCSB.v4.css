@@ -1,0 +1,195 @@
+/* v4 duplicate to bypass caches */
+/* Contents copied from CCSB.css */
+
+/* Variables CSS */
+:root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 95%;
+    --primary: 0 0% 20%;
+    --primary-foreground: 0 0% 95%;
+    --gold: 45 85% 52%;
+    --gold-light: 45 90% 60%;
+    --gold-dark: 45 70% 40%;
+}
+
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Eliminar bordes en móviles */
+@media (max-width: 768px) {
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #8B5E3C; /* fondo marrón solicitado */
+    color: hsl(var(--foreground));
+    line-height: 1.6;
+    border: 3px solid #d3d3d3; /* Borde gris claro */
+    box-sizing: border-box;
+}
+
+html { background-color: #8B5E3C; }
+
+/* Tipografía */
+.names {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+}
+
+/* Modal de Bienvenida */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none; /* oculto por defecto: evita pantalla negra si JS falla */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--shadow-elegant);
+    border: 2px solid hsl(var(--gold) / 0.2);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.modal-names {
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+}
+
+.modal-subtitle {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 2rem;
+}
+
+.modal-icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-outline {
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--brown) / 0.3);
+    background: transparent;
+    color: hsl(var(--brown));
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-outline:hover {
+    background: hsl(var(--brown) / 0.1);
+    border-color: hsl(var(--brown));
+}
+
+/* Reproductor de música */
+.music-player {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+.music-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, hsl(var(--brown)), hsl(var(--gold)));
+    color: white;
+    cursor: pointer;
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    max-width: 1100px; /* igual que .main-center */
+    margin: 0 auto;    /* centrar como el resto */
+    min-height: 100vh;
+    background: url('https://i.ibb.co/4wBH7S3R/0ea4ea193a4f-dosmasenlamesa-2-z.jpg') center / cover no-repeat;
+    background-attachment: fixed;
+    background-position: center 0;
+    will-change: background-position;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+@media (max-width: 1024px) {
+    .hero-section {
+        background-color: #111; /* fallback paint */
+        min-height: 100dvh; /* llenar pantalla en móvil */
+    }
+}
+
+/* The rest of CCSB.css content is identical to current file */
