@@ -196,8 +196,6 @@ html { background-color: #8B5E3C; }
     .hero-section {
         background-color: #111; /* fallback paint */
         min-height: 100dvh; /* llenar pantalla en móvil */
-        background-attachment: scroll;
-        background-position: center 0;
     }
 }
 
