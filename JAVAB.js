@@ -406,13 +406,18 @@ function showToast(title, message) {
 
 // Parallax en móviles (iOS y Android no soportan background-attachment: fixed)
 (function() {
-  const hero = document.querySelector(".hero-section");
-  if (!hero) return;
+  let ticking = false;
+
+  function getHero() {
+    return document.querySelector(".hero-section");
+  }
 
   function applyParallax() {
+    const hero = getHero();
+    if (!hero) return;
     // Solo aplicar en pantallas <= 1024px
     if (window.innerWidth <= 1024) {
-      let offset = window.scrollY * 0.5; // velocidad del efecto
+      const offset = window.scrollY * 0.5; // velocidad del efecto
       hero.style.backgroundPosition = `center ${offset}px`;
     } else {
       // Reset en desktop (usa fixed normal)
@@ -420,6 +425,26 @@ function showToast(title, message) {
     }
   }
 
-  document.addEventListener("scroll", applyParallax);
-  window.addEventListener("resize", applyParallax);
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(() => {
+        applyParallax();
+        ticking = false;
+      });
+    }
+  }
+
+  function init() {
+    applyParallax();
+    document.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", applyParallax);
+    window.addEventListener("orientationchange", applyParallax);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();
